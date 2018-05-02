@@ -1,0 +1,81 @@
+
+ Bertini(TM) v1.5.1
+  (August 29, 2016)
+
+ D.J. Bates, J.D. Hauenstein,
+ A.J. Sommese, C.W. Wampler
+
+(using GMP v4.2.3, MPFR v2.3.1)
+
+
+
+NOTE: You have requested to use adaptive path tracking.  Please make sure that you have
+setup the following tolerances appropriately:
+CoeffBound: 3.362724000000e+00, DegreeBound: 4.000000000000e+00
+AMPSafetyDigits1: 1, AMPSafetyDigits2: 1, AMPMaxPrec: 1024
+
+
+Tracking regeneration level 0 of 6: 3 paths to track.
+Tracking path 0 of 3
+
+Preparing regeneration level 1 of 6: 12 witness points to move.
+Moving 0 of 12
+
+Tracking regeneration level 1 of 6: 12 paths to track.
+Tracking path 0 of 12
+
+Preparing regeneration level 2 of 6: 48 witness points to move.
+Moving 0 of 48
+
+Tracking regeneration level 2 of 6: 45 paths to track.
+Tracking path 0 of 45
+
+Preparing regeneration level 3 of 6: 84 witness points to move.
+Moving 0 of 84
+
+Tracking regeneration level 3 of 6: 78 paths to track.
+Tracking path 0 of 78
+
+Preparing regeneration level 4 of 6: 48 witness points to move.
+Moving 0 of 48
+
+Tracking regeneration level 4 of 6: 44 paths to track.
+Tracking path 0 of 44
+
+Preparing regeneration level 5 of 6: 0 witness points to move.
+
+Tracking regeneration level 5 of 6: 0 paths to track.
+
+
+*************** Regeneration summary ***************
+
+NOTE: nonsingular vs singular is based on rank deficiency and identical endpoints
+
+|level|   paths   | nonsing endpoints | total discarded | sing endpoints | inf endpoints | higher dim'l | other bad endpoints
+-----------------------------------------------------------------------------------------------------------------------------
+| 0   |   3       | 3                 | 0               | 0              | 0             |  0           | 0
+| 1   |   12      | 12                | 0               | 0              | 0             |  0           | 0
+| 2   |   45      | 21                | 24              | 0              | 21            |  3           | 0
+| 3   |   78      | 12                | 66              | 10             | 55            |  1           | 0
+| 4   |   44      | 0                 | 44              | 8              | 36            |  0           | 0
+| 5   |   0       | 0                 | 0               | 0              | 0             |  0           | 0
+-----------------------------------------------------------------------------------------------------------------------------
+|total|   182
+
+****************************************************
+
+
+------------------------------------------------------------------------------------------
+The following files may be of interest to you:
+
+main_data:             A human-readable version of the solutions - main output file.
+raw_solutions:         A list of the solutions with the corresponding path numbers.
+raw_data:              Similar to the previous, but with the points in Bertini's homogeneous
+                         coordinates along with more information about the solutions.
+real_finite_solutions: A list of all real finite solutions.
+finite_solutions:      A list of all finite solutions.
+nonsingular_solutions: A list of all nonsingular solutions.
+------------------------------------------------------------------------------------------
+
+Summary for the last regeneration level:
+Paths Tracked: 0

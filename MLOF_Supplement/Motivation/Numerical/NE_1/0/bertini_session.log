@@ -1,0 +1,82 @@
+
+ Bertini(TM) v1.5.1
+  (August 29, 2016)
+
+ D.J. Bates, J.D. Hauenstein,
+ A.J. Sommese, C.W. Wampler
+
+(using GMP v4.2.3, MPFR v2.3.1)
+
+
+
+NOTE: You have requested to use adaptive path tracking.  Please make sure that you have
+setup the following tolerances appropriately:
+CoeffBound: 1.030530000000e+01, DegreeBound: 4.000000000000e+00
+AMPSafetyDigits1: 1, AMPSafetyDigits2: 1, AMPMaxPrec: 1024
+
+
+Tracking regeneration level 0 of 4: 3 paths to track.
+Tracking path 0 of 3
+
+Preparing regeneration level 1 of 4: 12 witness points to move.
+Moving 0 of 12
+
+Tracking regeneration level 1 of 4: 12 paths to track.
+Tracking path 0 of 12
+
+Preparing regeneration level 2 of 4: 36 witness points to move.
+Moving 0 of 36
+
+Tracking regeneration level 2 of 4: 33 paths to track.
+Tracking path 0 of 33
+
+Preparing regeneration level 3 of 4: 30 witness points to move.
+Moving 0 of 30
+
+Tracking regeneration level 3 of 4: 14 paths to track.
+Tracking path 0 of 14
+
+
+*************** Regeneration summary ***************
+
+NOTE: nonsingular vs singular is based on rank deficiency and identical endpoints
+
+|level|   paths   | nonsing endpoints | total discarded | sing endpoints | inf endpoints | higher dim'l | other bad endpoints
+-----------------------------------------------------------------------------------------------------------------------------
+| 0   |   3       | 3                 | 0               | 0              | 0             |  0           | 0
+| 1   |   12      | 9                 | 3               | 0              | 3             |  0           | 0
+| 2   |   33      | 10                | 23              | 2              | 21            |  0           | 0
+| 3   |   14      | 3                 | 11              | 3              | 8             |  0           | 0
+-----------------------------------------------------------------------------------------------------------------------------
+|total|   62
+
+****************************************************
+
+Non-singular Finite Solution Summary
+
+NOTE: nonsingular vs singular is based on rank deficiency and identical endpoints
+
+		| Number of real solns	|  Number of non-real solns	|  Total
+------------------------------------------------------------------------------------------
+Non-singular	|	0		|		3		|   3
+------------------------------------------------------------------------------------------
+Total		|	0		|		3		|   3
+
+
+------------------------------------------------------------------------------------------
+The following files may be of interest to you:
+
+main_data:             A human-readable version of the solutions - main output file.
+raw_solutions:         A list of the solutions with the corresponding path numbers.
+raw_data:              Similar to the previous, but with the points in Bertini's homogeneous
+                         coordinates along with more information about the solutions.
+real_finite_solutions: A list of all real finite solutions.
+finite_solutions:      A list of all finite solutions.
+nonsingular_solutions: A list of all nonsingular solutions.
+------------------------------------------------------------------------------------------
+
+Summary for the last regeneration level:
+Paths Tracked: 14
+ Truncated infinite paths: 8 - try adjusting SecurityMaxNorm or set SecurityLevel to 1 in the input file
+   Please see 'failed_paths' for more information about these paths.
+

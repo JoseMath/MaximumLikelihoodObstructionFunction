@@ -1,0 +1,46 @@
+
+ Bertini(TM) v1.5.1
+  (August 29, 2016)
+
+ D.J. Bates, J.D. Hauenstein,
+ A.J. Sommese, C.W. Wampler
+
+(using GMP v4.2.3, MPFR v2.3.1)
+
+
+NOTE: Please make sure that you have also setup the proper start points file for your parameter homotopy
+      with the starting parameters in 'start_parameters' and the target parameters in 'final_parameters'.
+
+
+
+NOTE: You have requested to use adaptive path tracking.  Please make sure that you have
+setup the following tolerances appropriately:
+CoeffBound: 4.468062000000e+00, DegreeBound: 4.000000000000e+00
+AMPSafetyDigits1: 1, AMPSafetyDigits2: 1, AMPMaxPrec: 1024
+
+Tracking path 0 of 50
+Non-singular Finite Solution Summary
+
+NOTE: nonsingular vs singular is based on rank deficiency and identical endpoints
+
+		| Number of real solns	|  Number of non-real solns	|  Total
+------------------------------------------------------------------------------------------
+Non-singular	|	0		|		50		|   50
+------------------------------------------------------------------------------------------
+Total		|	0		|		50		|   50
+
+
+------------------------------------------------------------------------------------------
+The following files may be of interest to you:
+
+main_data:             A human-readable version of the solutions - main output file.
+raw_solutions:         A list of the solutions with the corresponding path numbers.
+raw_data:              Similar to the previous, but with the points in Bertini's homogeneous
+                         coordinates along with more information about the solutions.
+real_finite_solutions: A list of all real finite solutions.
+finite_solutions:      A list of all finite solutions.
+nonsingular_solutions: A list of all nonsingular solutions.
+------------------------------------------------------------------------------------------
+
+Summary for the last regeneration level:
+Paths Tracked: 50

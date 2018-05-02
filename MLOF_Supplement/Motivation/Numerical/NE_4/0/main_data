@@ -1,0 +1,48 @@
+Number of variables: 7
+Variables:  lagV0 lagV1 p1 p2 p3 p4 p5
+Rank: 6
+
+NOTE: Since regeneration is being used, only non-singular solutions are printed.
+
+-------------------------
+At tol=1.000000000000e-10, there appear to be 0 solutions.
+
+
+*************** input file needed to reproduce this run ***************
+
+CONFIG
+
+PrintPathProgress: 1000;
+ParameterHomotopy: 1;
+UseRegeneration: 1;
+CoeffBound: 8.332734000000e+00;
+RandomSeed: 1524706782;
+
+END;
+
+INPUT
+
+hom_variable_group lagV0,lagV1;
+variable_group p1,p2,p3,p4,p5;
+parameter bV0,bV1,bV2,bV3,bV4;
+constant ii;
+ii=I;
+function jade0,jade1,jade2,jade3,jade4,jade5;
+jade0=-p1^2*p3^2+p2^2*p3^2+p1^2*p3*p4-p2^2*p3*p4-p1*p3*p5^2-2*p2*p3*p5^2-p1*p4*p5^2+p5^4+4*p1*p3*p5+2*p2*p3*p5+2*p2*p4*p5-p1*p3-2*p2*p3-p1*p4-2*p5^2+1;
+jade1=-2*p1*p3*p5^2*lagV1-4*p2*p3*p5^2*lagV1-2*p1*p4*p5^2*lagV1+4*p5^4*lagV1+4*p1*p3*p5*lagV1+2*p2*p3*p5*lagV1+2*p2*p4*p5*lagV1-4*p5^2*lagV1+(.938108635454372+.114667045465803*ii)*lagV0;
+jade2=p1^2*p3*p4*lagV1-p2^2*p3*p4*lagV1-p1*p4*p5^2*lagV1+2*p2*p4*p5*lagV1-p1*p4*lagV1+(.550096062509066+.561080279940632*ii)*lagV0;
+jade3=-2*p1^2*p3^2*lagV1+2*p2^2*p3^2*lagV1+p1^2*p3*p4*lagV1-p2^2*p3*p4*lagV1-p1*p3*p5^2*lagV1-2*p2*p3*p5^2*lagV1+4*p1*p3*p5*lagV1+2*p2*p3*p5*lagV1-p1*p3*lagV1-2*p2*p3*lagV1+(.106092633070783+.820858712550693*ii)*lagV0;
+jade4=2*p2^2*p3^2*lagV1-2*p2^2*p3*p4*lagV1-2*p2*p3*p5^2*lagV1+2*p2*p3*p5*lagV1+2*p2*p4*p5*lagV1-2*p2*p3*lagV1+(.480768957893592+.524642695340341*ii)*lagV0;
+jade5=-2*p1^2*p3^2*lagV1+2*p1^2*p3*p4*lagV1-p1*p3*p5^2*lagV1-p1*p4*p5^2*lagV1+4*p1*p3*p5*lagV1-p1*p3*lagV1-p1*p4*lagV1+(.600115212414696+.155522867620408*ii)*lagV0;
+
+END;
+
+
+*************** version information ***************
+Bertini(TM) v1.5.1
+GMP v4.2.3, MPFR v2.3.1
+
+Authors:
+D.J. Bates, J.D. Hauenstein,
+A.J. Sommese, C.W. Wampler
+

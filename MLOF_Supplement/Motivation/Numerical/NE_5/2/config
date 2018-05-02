@@ -1,0 +1,6 @@
+CoeffBound: 1.790317e+01;
+DegreeBound: 5;
+ParameterHomotopy: 1;
+UseRegeneration: 1;
+MPTYPE: 2;
+PrintPathProgress: 1000;

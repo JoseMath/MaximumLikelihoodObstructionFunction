@@ -1,0 +1,51 @@
+
+% This input file was written with the Bertini.m2 Macaulay2 package.
+
+CONFIG
+
+ParameterHomotopy : 1 ; 
+UseRegeneration : 1 ; 
+MPTYPE : 2 ; 
+PrintPathProgress : 1000 ; 
+
+%%%ENDCONFIG;
+END;
+
+INPUT
+
+hom_variable_group lagV0, lagV1, lagV2 ; 
+
+variable_group p1, p2, p3, p4, p5, p6, y ; 
+
+
+
+parameter bV0, bV1, bV2, bV3, bV4, bV5 ; 
+
+
+
+constant ii; 
+ii = I; 
+
+function jade0, jade1, jade2, jade3, jade4, jade5, jade6, jade7, jade8 ; 
+
+jade0 = p4^4-3*p3*p4^2*p5+p3^2*p5^2+2*p2*p4*p5^2-p1*p5^3+2*p3^2*p4*p6-2*p2*p4^2*p6-2*p2*p3*p5*p6+2*p1*p4*p5*p6+p2^2*p6^2-p1*p3*p6^2-p3^3+2*p2*p3*p4-p1*p4^2-p2^2*p5+p1*p3*p5 ; 
+
+jade1 = (.863604635007954+.504469618460703*ii)*p1+(.558279522564033+.035146543092516*ii)*p2+(.118308815282904+.294708517275343*ii)*p3+(.893310479021742+.212978921743777*ii)*p4+(.491188100158899+.294774838019557*ii)*p5+(.565170422101381+.650441390170898*ii)*p6+(.532351711830692+.343491591332896*ii)*y-bV0 ; 
+
+jade2 = (.532351711830692+.343491591332896*ii)*y*lagV2+(.707648093003382+.304773823794988*ii)*lagV0 ; 
+
+jade3 = 2*p3^2*p4*p6*lagV1-2*p2*p4^2*p6*lagV1-2*p2*p3*p5*p6*lagV1+2*p1*p4*p5*p6*lagV1+2*p2^2*p6^2*lagV1-2*p1*p3*p6^2*lagV1+(.565170422101381+.650441390170898*ii)*p6*lagV2+(.782088465349817+.68174269237269*ii)*lagV0 ; 
+
+jade4 = -3*p3*p4^2*p5*lagV1+2*p3^2*p5^2*lagV1+4*p2*p4*p5^2*lagV1-3*p1*p5^3*lagV1-2*p2*p3*p5*p6*lagV1+2*p1*p4*p5*p6*lagV1-p2^2*p5*lagV1+p1*p3*p5*lagV1+(.491188100158899+.294774838019557*ii)*p5*lagV2+(.0651143065711171+.815594721549913*ii)*lagV0 ; 
+
+jade5 = 4*p4^4*lagV1-6*p3*p4^2*p5*lagV1+2*p2*p4*p5^2*lagV1+2*p3^2*p4*p6*lagV1-4*p2*p4^2*p6*lagV1+2*p1*p4*p5*p6*lagV1+2*p2*p3*p4*lagV1-2*p1*p4^2*lagV1+(.893310479021742+.212978921743777*ii)*p4*lagV2+(.95208582132038+.539098285127349*ii)*lagV0 ; 
+
+jade6 = -3*p3*p4^2*p5*lagV1+2*p3^2*p5^2*lagV1+4*p3^2*p4*p6*lagV1-2*p2*p3*p5*p6*lagV1-p1*p3*p6^2*lagV1-3*p3^3*lagV1+2*p2*p3*p4*lagV1+p1*p3*p5*lagV1+(.118308815282904+.294708517275343*ii)*p3*lagV2+(.154875784374677+.850614485033597*ii)*lagV0 ; 
+
+jade7 = 2*p2*p4*p5^2*lagV1-2*p2*p4^2*p6*lagV1-2*p2*p3*p5*p6*lagV1+2*p2^2*p6^2*lagV1+2*p2*p3*p4*lagV1-2*p2^2*p5*lagV1+(.558279522564033+.035146543092516*ii)*p2*lagV2+(.139084080846696+.547582564916353*ii)*lagV0 ; 
+
+jade8 = -p1*p5^3*lagV1+2*p1*p4*p5*p6*lagV1-p1*p3*p6^2*lagV1-p1*p4^2*lagV1+p1*p3*p5*lagV1+(.863604635007954+.504469618460703*ii)*p1*lagV2+(.374107787897095+.482221677769261*ii)*lagV0 ; 
+
+
+END;
+

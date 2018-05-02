@@ -1,0 +1,99 @@
+
+ Bertini(TM) v1.5.1
+  (August 29, 2016)
+
+ D.J. Bates, J.D. Hauenstein,
+ A.J. Sommese, C.W. Wampler
+
+(using GMP v4.2.3, MPFR v2.3.1)
+
+
+
+NOTE: You have requested to use adaptive path tracking.  Please make sure that you have
+setup the following tolerances appropriately:
+CoeffBound: 1.370576000000e+01, DegreeBound: 5.000000000000e+00
+AMPSafetyDigits1: 1, AMPSafetyDigits2: 1, AMPMaxPrec: 1024
+
+
+Tracking regeneration level 0 of 7: 4 paths to track.
+Tracking path 0 of 4
+
+Preparing regeneration level 1 of 7: 20 witness points to move.
+Moving 0 of 20
+
+Tracking regeneration level 1 of 7: 20 paths to track.
+Tracking path 0 of 20
+
+Preparing regeneration level 2 of 7: 100 witness points to move.
+Moving 0 of 100
+
+Tracking regeneration level 2 of 7: 96 paths to track.
+Tracking path 0 of 96
+
+Preparing regeneration level 3 of 7: 400 witness points to move.
+Moving 0 of 400
+
+Tracking regeneration level 3 of 7: 384 paths to track.
+Tracking path 0 of 384
+
+Preparing regeneration level 4 of 7: 930 witness points to move.
+Moving 0 of 930
+
+Tracking regeneration level 4 of 7: 886 paths to track.
+Tracking path 0 of 886
+
+Preparing regeneration level 5 of 7: 920 witness points to move.
+Moving 0 of 920
+
+Tracking regeneration level 5 of 7: 865 paths to track.
+Tracking path 0 of 865
+!!!WARNING!!!  Paths 24 and 125 may have crossed!!!
+
+It appears that 1 path crossing(s) occurred prior to t=tEndgame for this level.
+
+
+Preparing regeneration level 6 of 7: 270 witness points to move.
+Moving 0 of 270
+
+Tracking regeneration level 6 of 7: 108 paths to track.
+Tracking path 0 of 108
+
+
+*************** Regeneration summary ***************
+
+NOTE: nonsingular vs singular is based on rank deficiency and identical endpoints
+
+|level|   paths   | nonsing endpoints | total discarded | sing endpoints | inf endpoints | higher dim'l | other bad endpoints
+-----------------------------------------------------------------------------------------------------------------------------
+| 0   |   4       | 4                 | 0               | 0              | 0             |  0           | 0
+| 1   |   20      | 20                | 0               | 0              | 0             |  0           | 0
+| 2   |   96      | 80                | 16              | 0              | 16            |  0           | 0
+| 3   |   384     | 186               | 198             | 20             | 175           |  0           | 3
+| 4   |   886     | 184               | 702             | 103            | 477           |  2           | 120
+| 5   |   865     | 54                | 811             | 118            | 586           |  0           | 107
+| 6   |   108     | 0                 | 108             | 28             | 72            |  0           | 8 ** see failure summary
+-----------------------------------------------------------------------------------------------------------------------------
+|total|   2363
+
+****************************************************
+
+
+------------------------------------------------------------------------------------------
+The following files may be of interest to you:
+
+main_data:             A human-readable version of the solutions - main output file.
+raw_solutions:         A list of the solutions with the corresponding path numbers.
+raw_data:              Similar to the previous, but with the points in Bertini's homogeneous
+                         coordinates along with more information about the solutions.
+real_finite_solutions: A list of all real finite solutions.
+finite_solutions:      A list of all finite solutions.
+nonsingular_solutions: A list of all nonsingular solutions.
+------------------------------------------------------------------------------------------
+
+Summary for the last regeneration level:
+Paths Tracked: 108
+ Truncated infinite paths: 72 - try adjusting SecurityMaxNorm or set SecurityLevel to 1 in the input file
+ Number of failures: 8
+     Too many steps: 8 - try adjusting MaxNumberSteps in the input file
+   Please see 'failed_paths' for more information about these paths.
+

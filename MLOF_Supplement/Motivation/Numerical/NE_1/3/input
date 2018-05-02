@@ -1,0 +1,49 @@
+
+% This input file was written with the Bertini.m2 Macaulay2 package.
+
+CONFIG
+
+ParameterHomotopy : 1 ; 
+UseRegeneration : 1 ; 
+MPTYPE : 2 ; 
+PrintPathProgress : 1000 ; 
+
+	 PARAMETERHOMOTOPY : 2; %%%ENDCONFIG;
+END;
+
+INPUT
+
+hom_variable_group lagV0, lagV1, lagV2, lagV3, lagV4 ; 
+
+variable_group p1, p2, p3, y ; 
+
+
+
+parameter bV0, bV1, bV2 ; 
+
+
+
+constant ii; 
+ii = I; 
+
+function jade0, jade1, jade2, jade3, jade4, jade5, jade6, jade7 ; 
+
+jade0 = -p2^2*p3+p1^2+p2^2+2*p2*p3-2*p1-2*p2-p3+2 ; 
+
+jade1 = (.229183+.879231*ii)*p1+(.415547+.0727349*ii)*p2+(.645009+.370209*ii)*p3+(.751082+.842956*ii)*y-bV0 ; 
+
+jade2 = (.567109+.772207*ii)*p1+(.612607+.722364*ii)*p2+(.685995+.629651*ii)*p3+(.0670266+.320013*ii)*y-bV1 ; 
+
+jade3 = (.206756+.461355*ii)*p1+(.749389+.536174*ii)*p2+(.125451+.812638*ii)*p3+(.254213+.642019*ii)*y-bV2 ; 
+
+jade4 = (.751082+.842956*ii)*y*lagV2+(.0670266+.320013*ii)*y*lagV3+(.254213+.642019*ii)*y*lagV4+(.873999+.511173*ii)*lagV0 ; 
+
+jade5 = -p2^2*p3*lagV1+2*p2*p3*lagV1-p3*lagV1+(.645009+.370209*ii)*p3*lagV2+(.685995+.629651*ii)*p3*lagV3+(.125451+.812638*ii)*p3*lagV4+(.782374+.952397*ii)*lagV0 ; 
+
+jade6 = -2*p2^2*p3*lagV1+2*p2^2*lagV1+2*p2*p3*lagV1-2*p2*lagV1+(.415547+.0727349*ii)*p2*lagV2+(.612607+.722364*ii)*p2*lagV3+(.749389+.536174*ii)*p2*lagV4+(.432042+.378417*ii)*lagV0 ; 
+
+jade7 = 2*p1^2*lagV1-2*p1*lagV1+(.229183+.879231*ii)*p1*lagV2+(.567109+.772207*ii)*p1*lagV3+(.206756+.461355*ii)*p1*lagV4+(.318344+.730461*ii)*lagV0 ; 
+
+
+END;
+

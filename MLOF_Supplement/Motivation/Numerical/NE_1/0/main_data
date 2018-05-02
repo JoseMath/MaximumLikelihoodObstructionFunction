@@ -1,0 +1,101 @@
+Number of variables: 5
+Variables:  lagV0 lagV1 p1 p2 p3
+Rank: 4
+
+NOTE: Since regeneration is being used, only non-singular solutions are printed.
+
+-------------------------
+Solution 1 (path number 1)
+Estimated condition number: 1.788421983355777e+02
+Function residual: 2.343714200843386e-13
+Latest Newton residual: 1.381133878715508e-14
+T value at final sample point: 9.765625000000001e-05
+Maximum precision utilized: 52
+T value of first precision increase: 0.000000000000000e+00
+Accuracy estimate, internal coordinates (difference of last two endpoint estimates):  3.855318471657398e-13
+Accuracy estimate, user's coordinates (after dehomogenization, if applicable):  1.124846917798346e-12
+Cycle number: 1
+6.912625447414203e-01 -3.754865860716523e-01
+1.000000000000000e+00 0.000000000000000e+00
+4.865628467553272e-01 4.399213367317655e-01
+1.886768600453255e-01 -4.096335528810521e-01
+6.103232306385920e-01 -3.929682093098530e-01
+Paths with the same endpoint, to the prescribed tolerance:  
+Multiplicity: 1
+-------------------------
+Solution 2 (path number 2)
+Estimated condition number: 7.454226815539660e+01
+Function residual: 1.377331113139258e-16
+Latest Newton residual: 6.554500921351305e-15
+T value at final sample point: 2.441406250000000e-05
+Maximum precision utilized: 52
+T value of first precision increase: 0.000000000000000e+00
+Accuracy estimate, internal coordinates (difference of last two endpoint estimates):  1.612734746154562e-12
+Accuracy estimate, user's coordinates (after dehomogenization, if applicable):  3.498880549508154e-12
+Cycle number: 1
+1.810974785293509e-01 -5.496589147593359e-02
+1.000000000000000e+00 0.000000000000000e+00
+8.835390086194052e-01 -3.165454443247637e-02
+1.345617050546601e+00 1.012445955564588e-01
+1.112211506661028e+00 -4.395019194822380e-03
+Paths with the same endpoint, to the prescribed tolerance:  
+Multiplicity: 1
+-------------------------
+Solution 0 (path number 13)
+Estimated condition number: 1.017810805309866e+01
+Function residual: 9.839109327619023e-17
+Latest Newton residual: 7.297020857467620e-16
+T value at final sample point: 3.906250000000000e-04
+Maximum precision utilized: 52
+T value of first precision increase: 0.000000000000000e+00
+Accuracy estimate, internal coordinates (difference of last two endpoint estimates):  6.906444280716011e-12
+Accuracy estimate, user's coordinates (after dehomogenization, if applicable):  2.159178870776488e-11
+Cycle number: 1
+6.789164169335660e-01 -6.612755938364868e-01
+1.000000000000000e+00 0.000000000000000e+00
+3.767730910374528e-01 -5.321310485680485e-01
+1.418948124374541e-01 3.493062481191013e-01
+5.480799906337864e-01 6.386773059986393e-01
+Paths with the same endpoint, to the prescribed tolerance:  
+Multiplicity: 1
+-------------------------
+At tol=1.000000000000e-10, there appear to be 3 solutions.
+
+
+*************** input file needed to reproduce this run ***************
+
+CONFIG
+
+PrintPathProgress: 1000;
+ParameterHomotopy: 1;
+UseRegeneration: 1;
+CoeffBound: 1.030530000000e+01;
+DegreeBound: 4.000000000000e+00;
+RandomSeed: 1524698370;
+
+END;
+
+INPUT
+
+hom_variable_group lagV0,lagV1;
+variable_group p1,p2,p3;
+parameter bV0,bV1,bV2;
+constant ii;
+ii=I;
+function jade0,jade1,jade2,jade3;
+jade0=-p2^2*p3+p1^2+p2^2+2*p2*p3-2*p1-2*p2-p3+2;
+jade1=-p2^2*p3*lagV1+2*p2*p3*lagV1-p3*lagV1+(.496929+.577981*ii)*lagV0;
+jade2=-2*p2^2*p3*lagV1+2*p2^2*lagV1+2*p2*p3*lagV1-2*p2*lagV1+(.470859+.33303*ii)*lagV0;
+jade3=2*p1^2*lagV1-2*p1*lagV1+(.976133+.564431*ii)*lagV0;
+
+END;
+
+
+*************** version information ***************
+Bertini(TM) v1.5.1
+GMP v4.2.3, MPFR v2.3.1
+
+Authors:
+D.J. Bates, J.D. Hauenstein,
+A.J. Sommese, C.W. Wampler
+

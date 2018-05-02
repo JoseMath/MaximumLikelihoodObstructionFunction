@@ -1,0 +1,41 @@
+
+% This input file was written with the Bertini.m2 Macaulay2 package.
+
+CONFIG
+
+ParameterHomotopy : 1 ; 
+UseRegeneration : 1 ; 
+MPTYPE : 2 ; 
+PrintPathProgress : 1000 ; 
+
+	 PARAMETERHOMOTOPY : 2; %%%ENDCONFIG;
+END;
+
+INPUT
+
+hom_variable_group lagV0, lagV1 ; 
+
+variable_group p1, p2, p3 ; 
+
+
+
+parameter bV0, bV1, bV2 ; 
+
+
+
+constant ii; 
+ii = I; 
+
+function jade0, jade1, jade2, jade3 ; 
+
+jade0 = -p2^2*p3+p1^2+p2^2+2*p2*p3-2*p1-2*p2-p3+2 ; 
+
+jade1 = -p2^2*p3*lagV1+2*p2*p3*lagV1-p3*lagV1+(.496929+.577981*ii)*lagV0 ; 
+
+jade2 = -2*p2^2*p3*lagV1+2*p2^2*lagV1+2*p2*p3*lagV1-2*p2*lagV1+(.470859+.33303*ii)*lagV0 ; 
+
+jade3 = 2*p1^2*lagV1-2*p1*lagV1+(.976133+.564431*ii)*lagV0 ; 
+
+
+END;
+
