@@ -2,7 +2,7 @@
 newPackage(
     "MaximumlikelihoodObstructionFunction",
     Version => "1.0", 
-    Date => "01 May 2018",
+    Date => "01 Oct 2018",
     Authors => {
    {Name => "Jose Israel Rodriguez",
        Email => "Joisro@UChicago.edu",
@@ -98,26 +98,23 @@ newMLDegreeVariety=method(Options=>{		})
 newMLDegreeVariety(Ideal):= o->(I)->(
     numZ:=#gens ring I;
     new MLDegreeVariety from {
-    DefiningEquations=> I,
-    Hyperplanes=>for i to numZ+1 list randomVector(numZ),
-    Data0=>randomVector(numZ),
-    Data1=>randomVector(1+numZ)    
-            })
+      DefiningEquations=> I,
+      Hyperplanes=>for i to numZ+1 list randomVector(numZ),
+      Data0=>randomVector(numZ),
+      Data1=>randomVector(1+numZ)})
 
 --######
 newRemovalMLDegree=method(Options=>{   })
 --######
-newRemovalMLDegree(MLDegreeVariety):= o->(L)->(
-    P:=for i to -1+#gens ring (L#DefiningEquations) list 1;
-    newRemovalMLDegree(L,P)        )
+--For symbolic compuation
+newRemovalMLDegree(MLDegreeVariety):= o->(L)->newRemovalMLDegree(L,apply(#gens ring (L#DefiningEquations),i->1))--newRemovalMLDegree(L,{1,1,...,1})
 newRemovalMLDegree(MLDegreeVariety,List):= o->(L,P)->new RemovalMLDegree from {
     ThePoint=>P,
     TheVariety=>L,
-    MLDegrees=>{}
-    }    
+    MLDegrees=>{}}    
+--For numerical computation
 newRemovalMLDegree(MLDegreeWitnessCollection,List):= o->(WC,p)->(    
-    M:=new RemovalMLDegree from {TheVariety=>WC,MLDegrees=>{},ThePoint=>p,WitnessSets=>{}};
-    return M
+    return new RemovalMLDegree from {TheVariety=>WC,MLDegrees=>{},ThePoint=>p,WitnessSets=>{}}
     )
 
 solveRemovalMLDegree=method(Options=>{ })
@@ -172,16 +169,17 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codLn)->(
 --    print(4,toString augM);
     if rk==0 then minorSize:=codLn else minorSize=codLn+rk;
     LC:=ideal(I)+minors(1+minorSize,augM);
+    print ("minors"=>minorSize,Jac,augM); 
     sl:= minors(minorSize,Jac);
     apply(useVars,i->LC=saturate(LC,i));
     LC=saturate(LC,sl);
 --    if member(Saturate,keys M) then (print "winKey";      apply(M#Saturate,i->LC=saturate(LC,sub(i,mlR)))	);
     theDegree:=degree LC;
---    print(codim LC,dim LC);
+--    print(codim LC,dim LC); 
     M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
 --    print theDegree;
     theDegree)
-
+ 
 
 
 --Extracting information
