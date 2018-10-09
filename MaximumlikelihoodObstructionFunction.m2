@@ -117,23 +117,21 @@ newRemovalMLDegree(MLDegreeWitnessCollection,List):= o->(WC,p)->return new Remov
 
 solveRemovalMLDegree=method(Options=>{ })
 
-solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codLn) where codLn is the codimension of X. 
+--For symbolic computation 
+solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codF) where codF is the codimension of X. 
 
-
-solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codLn)->(
-    theI:=(M#TheVariety#DefiningEquations);
-    dimF:=#gens ring (M#TheVariety#DefiningEquations)-codLn;
-    (M#TheVariety).TheDimension=dimF;
-    apply(dimF+2,rk->solveRemovalMLDegree(rk,M,codLn)))
+solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codF)->(
+    (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codF;
+    apply(dimF+2,rk->solveRemovalMLDegree(rk,M,codF)))
     
 solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
     theI:=M#TheVariety#DefiningEquations;
 --    apply(M#Saturate,i->theI=saturate(theI,i));    
-    codLn:=codim theI;
-    dimF:=#gens ring (M#TheVariety#DefiningEquations)-codLn;
+    codF:=codim theI;
+    dimF:=#gens ring (M#TheVariety#DefiningEquations)-codF;
     (M#TheVariety).TheDimension=dimF;        
-    solveRemovalMLDegree(rk,M,codLn))
-solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codLn)->(
+    solveRemovalMLDegree(rk,M,codF))
+solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codF)->(
 --    print o;
     P:=M#ThePoint;
     bigF:=(M#TheVariety#DefiningEquations)//gens//entries//flatten;
@@ -162,7 +160,7 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codLn)->(
 --    print(2,Jac);
     augM:=sub(topJac,mlR)||(Jac*diagonalMatrix(useVars));
 --    print(4,toString augM);
-    if rk==0 then minorSize:=codLn else minorSize=codLn+rk;
+    if rk==0 then minorSize:=codF else minorSize=codF+rk;
     LC:=ideal(I)+minors(1+minorSize,augM);
     print ("minors"=>minorSize,Jac,augM); 
     sl:= minors(minorSize,Jac);
