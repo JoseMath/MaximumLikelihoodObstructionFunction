@@ -118,17 +118,17 @@ newRemovalMLDegree(MLDegreeWitnessCollection,List):= o->(WC,p)->return new Remov
 solveRemovalMLDegree=method(Options=>{ })
 
 --For symbolic computation 
-solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codimI) where codimI is the codimension of X. 
+solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codimI) where codimI is the codimension of I. 
 solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codimI)->(
     (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codimI;
-    apply(dimF+2,rk->solveRemovalMLDegree(rk,M,codimI)))
+    apply(dimI+2,rk->solveRemovalMLDegree(rk,M,codimI)))
     
 solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
     theI:=M#TheVariety#DefiningEquations;
 --    apply(M#Saturate,i->theI=saturate(theI,i));    
     codimI:=codim theI;
-    dimF:=#gens ring (M#TheVariety#DefiningEquations)-codimI;
-    (M#TheVariety).TheDimension=dimF;        
+    dimI:=#gens ring (M#TheVariety#DefiningEquations)-codimI;
+    (M#TheVariety).TheDimension=dimI;        
     solveRemovalMLDegree(rk,M,codimI))
 solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
 --    print o;
