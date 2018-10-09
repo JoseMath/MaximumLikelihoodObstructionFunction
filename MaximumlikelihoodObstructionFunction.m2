@@ -113,17 +113,12 @@ newRemovalMLDegree(MLDegreeVariety,List):= o->(L,P)->new RemovalMLDegree from {
     TheVariety=>L,
     MLDegrees=>{}}    
 --For numerical computation
-newRemovalMLDegree(MLDegreeWitnessCollection,List):= o->(WC,p)->(    
-    return new RemovalMLDegree from {TheVariety=>WC,MLDegrees=>{},ThePoint=>p,WitnessSets=>{}}
-    )
+newRemovalMLDegree(MLDegreeWitnessCollection,List):= o->(WC,p)->return new RemovalMLDegree from {TheVariety=>WC,MLDegrees=>{},ThePoint=>p,WitnessSets=>{}}
 
 solveRemovalMLDegree=method(Options=>{ })
-solveRemovalMLDegree(RemovalMLDegree):= o->(M)->(
-    theI:=(M#TheVariety#DefiningEquations);
---    apply(M#Saturate,i->theI=saturate(theI,i));
-    codLn:=codim theI;
-    solveRemovalMLDegree(M,codLn)
-    )
+
+solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codLn) where codLn is the codimension of X. 
+
 
 solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codLn)->(
     theI:=(M#TheVariety#DefiningEquations);
