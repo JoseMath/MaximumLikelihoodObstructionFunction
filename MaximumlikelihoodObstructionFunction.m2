@@ -124,12 +124,10 @@ solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codimI)->(
     apply(dimI+2,rk->solveRemovalMLDegree(rk,M,codimI)))
     
 solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
-    theI:=M#TheVariety#DefiningEquations;
---    apply(M#Saturate,i->theI=saturate(theI,i));    
-    codimI:=codim theI;
-    dimI:=#gens ring (M#TheVariety#DefiningEquations)-codimI;
-    (M#TheVariety).TheDimension=dimI;        
+    codimI:=codim (M#TheVariety#DefiningEquations);
+    if not member(TheDimension,keys (M#TheVariety)) then (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codimI;        
     solveRemovalMLDegree(rk,M,codimI))
+
 solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
 --    print o;
     P:=M#ThePoint;
