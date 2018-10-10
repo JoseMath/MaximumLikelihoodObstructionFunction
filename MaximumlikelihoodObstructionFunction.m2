@@ -121,7 +121,8 @@ solveRemovalMLDegree=method(Options=>{ })
 solveRemovalMLDegree(RemovalMLDegree):= o->(M)->solveRemovalMLDegree(M,codim (M#TheVariety#DefiningEquations))---solveRemovalMLDegree(M,codimI) where codimI is the codimension of I. 
 solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codimI)->(
     (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codimI;
-    apply(dimI+2,rk->solveRemovalMLDegree(rk,M,codimI)))
+    apply(dim(M)+2,rk->solveRemovalMLDegree(rk,M,codimI))
+    )
     
 solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
     if not member(TheDimension,keys (M#TheVariety)) 
@@ -143,27 +144,40 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
     zPoint:= apply(zList,P,(z,p)->z-sub(p,mlR));
     print zPoint;
     usedH:=apply(rk-1,i->sum apply((M#TheVariety#Hyperplanes)_(i+1),zPoint,(c,z)->sub(c,mlR)*z  ));
-    littleF={-theY+sum apply(first(M#TheVariety#Hyperplanes),zPoint,(c,z)->sub(c,mlR)*z)};
-    I:=bigF|littleF|usedH;
+    littleF:={-theY+sum apply(first(M#TheVariety#Hyperplanes),zPoint,(c,z)->sub(c,mlR)*z)};
+    FZ:=(bigF|littleF|usedH);
     useVars:=zList|{theY};
-    topJac:=matrix{M#TheVariety#Data1})
- else (--rk==0 
-    useVars=gens ring bigF; 
-    topJac=matrix{M#TheVariety#Data0}; 
-    Jac:=(matrix makeJac(bigF,useVars));   
-    augM:=sub(topJac,ring bigF)||(Jac*diagonalMatrix(useVars)));
-  minorSize:=codimI+rk+1;
---    print (toString I);
+    topJac:=matrix{M#TheVariety#Data1};
+    Jac:=(matrix makeJac(FZ,useVars));   
+    augM:=sub(topJac,ring first useVars)||(Jac*diagonalMatrix(useVars));
+    minorSize:=codimI+rk+1;
+    LC:=ideal(FZ)+minors(minorSize,augM);
+    sl:= minors(minorSize-1,Jac);
+--    apply(FZ,i->print(toString i));
 --    print (toString littleF);
 --    print (toString usedH);    
-  LC:=ideal(I)+minors(minorSize,augM);
- --   print ("minors"=>minorSize,Jac,augM); 
-  sl:= minors(minorSize,Jac);
-  apply(useVars,i->LC=saturate(LC,i));
-  LC=saturate(LC,sl);
-  theDegree:=degree LC;
-  M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
-  print theDegree;
+--    print ("minors"=>minorSize,Jac,augM);  
+    apply(useVars,i->LC=saturate(LC,i));
+    LC=saturate(LC,sl);
+    theDegree:=degree LC;
+    M#MLDegrees=append(M#MLDegrees,rk=>theDegree))
+ else (--rk==0 
+    useVars=gens ring first bigF; 
+    topJac=matrix{M#TheVariety#Data0}; 
+    Jac=(matrix makeJac(bigF,useVars));   
+    minorSize=codimI+1;
+    augM=sub(topJac,ring first useVars)||(Jac*diagonalMatrix(useVars));    
+    print augM;
+    print minorSize;
+    LC=ideal(bigF)+minors(minorSize,augM);    
+    sl= minors(minorSize-1,Jac);
+    apply(useVars,i->LC=saturate(LC,i));
+    LC=saturate(LC,sl);
+    print toString gens ring LC;
+    print toString LC;
+    theDegree=degree LC;
+    M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
+    print theDegree);
   theDegree)
  
 
@@ -328,8 +342,7 @@ newMLDegreeWitnessSet(ZZ,MLDegreeWitnessCollection):= o->(rk,WC)->newMLDegreeWit
 ----------------------------------------------------------------------------------------------------------------
 homotopyRemovalMLDegree=method(Options=>{		}) 
 ----------------------------------------------------------------------------------------------------------------
-homotopyRemovalMLDegree(RemovalMLDegree):= o->(M)->(
-    apply(M#TheVariety#TheDimension+2,rk->homotopyRemovalMLDegree(rk,M)))                  
+homotopyRemovalMLDegree(RemovalMLDegree):= o->(M)->apply(M#TheVariety#TheDimension+2,rk->homotopyRemovalMLDegree(rk,M))                  
 homotopyRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(    
   WC:=M#TheVariety;
   s:=addSlash(WC#Directory)|rk;
@@ -359,9 +372,10 @@ homotopyRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
       )
     else print("Bertini did not run as expected.")          
   )else if rk===0 then(
-    if fileExists(s|"start") 
+    if fileExists(addSlash(s)|"start") 
     then theSols=importSolutionsFile(s,NameSolutionsFile=>"start")
-    else theSols={}); 
+    else theSols={});
+  print("PreSort"=>#theSols) ;
   checkSols:= apply(theSols,i->WC#SortPoints(i));
 --  print checkSols;
   tallySols:=(tally checkSols);
