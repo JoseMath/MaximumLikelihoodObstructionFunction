@@ -124,51 +124,47 @@ solveRemovalMLDegree(RemovalMLDegree,ZZ):= o->(M,codimI)->(
     apply(dimI+2,rk->solveRemovalMLDegree(rk,M,codimI)))
     
 solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
-    codimI:=codim (M#TheVariety#DefiningEquations);
-    if not member(TheDimension,keys (M#TheVariety)) then (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codimI;        
-    solveRemovalMLDegree(rk,M,codimI))
+    if not member(TheDimension,keys (M#TheVariety)) 
+    then (M#TheVariety).TheDimension=#gens ring (M#TheVariety#DefiningEquations)-codim (M#TheVariety#DefiningEquations);        
+    solveRemovalMLDegree(rk,M,#gens ring (M#TheVariety#DefiningEquations)-dim M))
 
 solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
 --    print o;
-    P:=M#ThePoint;
-    bigF:=(M#TheVariety#DefiningEquations)//gens//entries//flatten;
-    zList:=gens ring first bigF;
-    mlKK:=coefficientRing ring first bigF;
-    mlR:=mlKK[zList,value("y")];
+  P:=M#ThePoint;
+  bigF:=(M#TheVariety#DefiningEquations)//gens//entries//flatten;
+  zList:=gens ring first bigF;
+  mlKK:=coefficientRing ring first bigF;
+  if rk>0 
+  then(
+    mlR:=mlKK[zList,value("yJIR")];
     bigF=apply(bigF,i->sub(i,mlR));
     zList=drop(gens mlR,-1); 
     theY:=last gens mlR;
     zPoint:= apply(zList,P,(z,p)->z-sub(p,mlR));
     print zPoint;
     usedH:=apply(rk-1,i->sum apply((M#TheVariety#Hyperplanes)_(i+1),zPoint,(c,z)->sub(c,mlR)*z  ));
-    if rk==0 then littleF:={} else littleF={-theY+sum apply(first(M#TheVariety#Hyperplanes),zPoint,(c,z)->sub(c,mlR)*z)};
+    littleF={-theY+sum apply(first(M#TheVariety#Hyperplanes),zPoint,(c,z)->sub(c,mlR)*z)};
     I:=bigF|littleF|usedH;
+    useVars:=zList|{theY};
+    topJac:=matrix{M#TheVariety#Data1})
+ else (--rk==0 
+    useVars=gens ring bigF; 
+    topJac=matrix{M#TheVariety#Data0}; 
+    Jac:=(matrix makeJac(bigF,useVars));   
+    augM:=sub(topJac,ring bigF)||(Jac*diagonalMatrix(useVars)));
+  minorSize:=codimI+rk+1;
 --    print (toString I);
 --    print (toString littleF);
 --    print (toString usedH);    
-    if rk=!=0 then (
-	useVars:=zList|{theY};
-	topJac:=matrix{M#TheVariety#Data1}) else if rk==0 
-    then (
-	useVars=zList;
-    	topJac=matrix{M#TheVariety#Data0}); 
- --   print(1,topJac);
-    Jac:=(matrix makeJac(I,useVars));   
---    print(2,Jac);
-    augM:=sub(topJac,mlR)||(Jac*diagonalMatrix(useVars));
---    print(4,toString augM);
-    if rk==0 then minorSize:=codimI else minorSize=codimI+rk;
-    LC:=ideal(I)+minors(1+minorSize,augM);
-    print ("minors"=>minorSize,Jac,augM); 
-    sl:= minors(minorSize,Jac);
-    apply(useVars,i->LC=saturate(LC,i));
-    LC=saturate(LC,sl);
---    if member(Saturate,keys M) then (print "winKey";      apply(M#Saturate,i->LC=saturate(LC,sub(i,mlR)))	);
-    theDegree:=degree LC;
---    print(codim LC,dim LC); 
-    M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
---    print theDegree;
-    theDegree)
+  LC:=ideal(I)+minors(minorSize,augM);
+ --   print ("minors"=>minorSize,Jac,augM); 
+  sl:= minors(minorSize,Jac);
+  apply(useVars,i->LC=saturate(LC,i));
+  LC=saturate(LC,sl);
+  theDegree:=degree LC;
+  M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
+  print theDegree;
+  theDegree)
  
 
 
@@ -228,7 +224,7 @@ newMLDegreeWitnessCollection(Ideal,ZZ,String):= o->(I,d,s)->(
     bVars:=apply(d+1,i->value("bV"|i));
     kk:=coefficientRing ring (WC#DefiningEquations);
 --    print pVars;
-    WC.WitnessRing=(kk[pVars|{"y"}]**kk[lVars]**kk[bVars]);
+    WC.WitnessRing=(kk[pVars|{"yJIR"}]**kk[lVars]**kk[bVars]);
     WC.DefiningEquations=sub(WC#DefiningEquations,WC#WitnessRing);
 --    print keys WC;
     WC.SortPoints=(aSol)->sortPointFunction(aSol);
