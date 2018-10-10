@@ -142,7 +142,7 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
     zList=drop(gens mlR,-1); 
     theY:=last gens mlR;
     zPoint:= apply(zList,P,(z,p)->z-sub(p,mlR));
-    print zPoint;
+--    print zPoint;
     usedH:=apply(rk-1,i->sum apply((M#TheVariety#Hyperplanes)_(i+1),zPoint,(c,z)->sub(c,mlR)*z  ));
     littleF:={-theY+sum apply(first(M#TheVariety#Hyperplanes),zPoint,(c,z)->sub(c,mlR)*z)};
     FZ:=(bigF|littleF|usedH);
@@ -167,14 +167,14 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
     Jac=(matrix makeJac(bigF,useVars));   
     minorSize=codimI+1;
     augM=sub(topJac,ring first useVars)||(Jac*diagonalMatrix(useVars));    
-    print augM;
-    print minorSize;
+--    print augM;
+--    print minorSize;
     LC=ideal(bigF)+minors(minorSize,augM);    
     sl= minors(minorSize-1,Jac);
     apply(useVars,i->LC=saturate(LC,i));
     LC=saturate(LC,sl);
-    print toString gens ring LC;
-    print toString LC;
+--    print toString gens ring LC;
+--    print toString LC;
     theDegree=degree LC;
     M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
     print theDegree);
@@ -375,7 +375,7 @@ homotopyRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
     if fileExists(addSlash(s)|"start") 
     then theSols=importSolutionsFile(s,NameSolutionsFile=>"start")
     else theSols={});
-  print("PreSort"=>#theSols) ;
+--  print("PreSort"=>#theSols) ;
   checkSols:= apply(theSols,i->WC#SortPoints(i));
 --  print checkSols;
   tallySols:=(tally checkSols);
