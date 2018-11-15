@@ -130,7 +130,7 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree):= o->(rk,M)->(
     solveRemovalMLDegree(rk,M,#gens ring (M#TheVariety#DefiningEquations)-dim M))
 
 solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
---    print o;
+--    print ;
   P:=M#ThePoint;
   bigF:=(M#TheVariety#DefiningEquations)//gens//entries//flatten;
   zList:=gens ring first bigF;
@@ -177,7 +177,8 @@ solveRemovalMLDegree(ZZ,RemovalMLDegree,ZZ):= o->(rk,M,codimI)->(
 --    print toString LC;
     theDegree=degree LC;
     M#MLDegrees=append(M#MLDegrees,rk=>theDegree);
-    print theDegree);
+    --print theDegree
+    );
   theDegree)
  
 
@@ -253,9 +254,7 @@ reclassifyWitnessPoints=method(Options=>{		})
 reclassifyWitnessPoints(MutableHashTable,RR):= o->(WCM,eps)->(
     spf:=(aSol)->(if not(apply(aSol,i->{realPart i,imaginaryPart i}/abs//max)//min<eps) then true else false	    );
     reclassifyWitnessPoints(WCM,spf)    	);
-reclassifyWitnessPoints(MutableHashTable,FunctionClosure):= o->(WCM,spf)->(
-    apply(#WCM#WitnessSets,p->reclassifyWitnessPoints(WCM,spf,p))
-	);    
+reclassifyWitnessPoints(MutableHashTable,FunctionClosure):= o->(WCM,spf)->apply(#WCM#WitnessSets,p->reclassifyWitnessPoints(WCM,spf,p));    
 reclassifyWitnessPoints(MutableHashTable,RR,ZZ):= o->(WCM,eps,p)->(
     spf:=(aSol)->not(if (apply(aSol,i->{realPart i,imaginaryPart i}/abs//max)//min<eps) then true else false	    );
     reclassifyWitnessPoints(WCM,spf,p)
